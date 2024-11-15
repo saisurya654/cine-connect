@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="messages">
+    <h3>Your Messages</h3>
+    <div class="message-list">
+        {% for message in messages %}
+            <div class="message {{ 'sender' if loop.index % 2 == 1 else 'receiver' }}">
+                <div class="message-content">
+                    <p><strong>From User {{ message[0] }}:</strong> {{ message[1] }}</p>
+                    <p><small>{{ message[2] }}</small></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+<style>
+/* Main message container */
+.messages {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.message-list {
+    max-height: 500px;
+    overflow-y: scroll;
+    margin-top: 20px;
+}
+
+/* Message container styles */
+.message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #f1f1f1;
+    width: fit-content;
+    max-width: 70%;
+    position: relative;
+}
+
+.sender {
+    align-self: flex-end;
+    background-color: #dcf8c6; /* WhatsApp message bubble color */
+    margin-left: auto;
+}
+
+.receiver {
+    align-self: flex-start;
+    background-color: #ffffff; /* Other person's message bubble color */
+    border: 1px solid #ccc;
+}
+
+.message-content {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.message p {
+    margin: 5px 0;
+}
+
+/* Time of message */
+.message small {
+    color: #888;
+    font-size: 0.8rem;
+    text-align: right;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Scrollbar style */
+.message-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.message-list::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.message-list::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+</style>

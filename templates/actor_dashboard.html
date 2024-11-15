@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actor Dashboard - Cinema Industry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .file-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .file-item {
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        video {
+            width: 100%;
+            height: auto;
+        }
+        .upload-section {
+            margin-top: 30px;
+            background-color: #e9f7ef;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #d0e6d8;
+        }
+        .upload-section input[type="file"] {
+            margin-top: 10px;
+        }
+        .upload-section button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .upload-section button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('profile') }}">Profile</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+     <!-- Upload Section -->
+     <div class="upload-section">
+        <h3>Upload New Video</h3>
+        <form action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+    <div class="content">
+        <h1>Welcome, {{ username }}!</h1>
+        <h2>Your Files</h2>
+        <div class="file-list">
+            {% for file in actor_files %}
+                <div class="file-item">
+                    <video controls>
+                        <source src="{{ file }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>File: {{ file }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h2>Other Actor Files</h2>
+        <div class="file-list">
+            {% for file in other_actor_files %}
+                <div class="file-item">
+                    <video controls>
+                        <source src="{{ file }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>File: {{ file }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        </div>
+</body>
+</html>

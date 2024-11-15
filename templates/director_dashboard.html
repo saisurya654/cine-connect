@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome, {{ username }}!</h1>
+
+    <h2>Actor Files</h2>
+    <div class="row">
+        {% if actor_files %}
+            {% for file in actor_files %}
+                <div class="col-md-4">
+                    <div class="file-item">
+                        {% if file.endswith('.mp4') %}
+                            <video controls>
+                                <source src="{{ file }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% else %}
+                            <a href="{{ file }}" target="_blank" class="btn btn-success btn-block">View File</a>
+                        {% endif %}
+                        <p><strong>Uploaded by:</strong> Actor (or relevant uploader)</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No actor files available.</p>
+        {% endif %}
+    </div>
+
+    <h2>Writer Files</h2>
+    <div class="row">
+        {% if writer_files %}
+            {% for file in writer_files %}
+                <div class="col-md-4">
+                    <div class="file-item">
+                        {% if file.endswith('.mp4') %}
+                            <video controls>
+                                <source src="{{ file }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% else %}
+                            <a href="{{ file }}" target="_blank" class="btn btn-success btn-block">View File</a>
+                        {% endif %}
+                        <p><strong>Uploaded by:</strong> Writer (or relevant uploader)</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No writer files available.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
