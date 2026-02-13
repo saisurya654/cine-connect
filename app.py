@@ -12,8 +12,8 @@ app.secret_key = 'super_secret_key'
 CORS(app)
 
 # AWS S3 Configuration
-S3_KEY = "AKIAVWABKA7LVAH2J45G"
-S3_SECRET = "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"
+S3_KEY = ""
+S3_SECRET = ""
 S3_REGION = "us-east-1"
 MEDIA_BUCKET = "cinemaindustry-01"  # Bucket for all media types
 
